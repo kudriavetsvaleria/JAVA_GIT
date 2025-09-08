@@ -8,6 +8,7 @@ public class Main {
         char c = 'A';
         boolean f1 = false, f2;
         byte b = 1;
+        int k = 5;
 
         // 2) Дії зі змінними
         i = b;
@@ -22,6 +23,9 @@ public class Main {
 
         b = (byte) i;
         System.out.println("b = " + b);
+
+        k = k + i;
+        System.out.println("k = " + k);
 
         // 3) Обчислення виразу
         double y = Math.sin(Math.pow(i, 2)) + Math.pow(Math.cos(i), 2) / (i + Math.sqrt(i));
