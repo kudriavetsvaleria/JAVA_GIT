@@ -27,5 +27,35 @@ public class Main {
             System.out.println("НІ");
         }
 
+        int evenCount = 0;
+        int oddCount = 0;
+        int oddSum = 0;
+        System.out.println("Вводьте додатні числа (0 для завершення):");
+
+        while (true) {
+            int num = scan.nextInt();
+
+            if (num == 0) {
+                break;
+            }
+
+            if (num % 2 == 0) {
+                evenCount++;
+            } else {
+                oddCount++;
+                oddSum += num;
+            }
+        }
+
+        System.out.println("Кількість парних чисел: " + evenCount);
+
+        if (oddCount > 0) {
+            double avgOdd = (double) oddSum / oddCount;
+            System.out.println("Середнє значення непарних чисел: " + avgOdd);
+        } else {
+            System.out.println("Непарні числа не вводилися.");
+        }
+
+        scan.close();
     }
 }
