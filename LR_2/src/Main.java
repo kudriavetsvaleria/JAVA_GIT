@@ -3,58 +3,58 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        int a, b, c;
+        Scanner scan = new Scanner(System.in);
+
+        // ===== [1] Генерація 3 чисел і максимум =====
         Random random = new Random();
-        a = random.nextInt(100);
-        b = random.nextInt(100);
-        c = random.nextInt(100);
-
+        int a = random.nextInt(100);
+        int b = random.nextInt(100);
+        int c = random.nextInt(100);
         System.out.println("Згенеровані числа: a = " + a + ", b = " + b + ", c = " + c);
-
         int max = Math.max(a, Math.max(b, c));
         System.out.println("Максимальне число: " + max);
 
-        Scanner scan = new Scanner(System.in);
+        // ===== [2] Перевірка початку рядка =====
+        System.out.print("Введіть рядок: ");
+        String first = scan.nextLine();
+        String second = "Привіт";
+        System.out.println(first.startsWith(second) ? "ТАК" : "НІ");
 
-        String first, second;
-        System.out.println("Введіть рядок: ");
-        first = scan.nextLine();
-        second = "Привіт";
-
-        if (first.startsWith(second)) {
-            System.out.println("ТАК");
-        } else {
-            System.out.println("НІ");
-        }
-
-        int evenCount = 0;
-        int oddCount = 0;
-        int oddSum = 0;
+        // ===== [3] Парні/непарні до 0 (читаємо рядками) =====
+        int evenCount = 0, oddCount = 0, oddSum = 0;
         System.out.println("Вводьте додатні числа (0 для завершення):");
-
         while (true) {
-            int num = scan.nextInt();
-
-            if (num == 0) {
-                break;
+            String line = scan.nextLine().trim();
+            if (line.isEmpty()) continue;          // пропускаємо пусті
+            int num;
+            try {
+                num = Integer.parseInt(line);
+            } catch (NumberFormatException e) {
+                System.out.println("Не ціле число, спробуйте ще:");
+                continue;
             }
-
-            if (num % 2 == 0) {
-                evenCount++;
-            } else {
-                oddCount++;
-                oddSum += num;
-            }
+            if (num == 0) break;
+            if (num % 2 == 0) evenCount++;
+            else { oddCount++; oddSum += num; }
         }
 
         System.out.println("Кількість парних чисел: " + evenCount);
-
         if (oddCount > 0) {
             double avgOdd = (double) oddSum / oddCount;
             System.out.println("Середнє значення непарних чисел: " + avgOdd);
         } else {
             System.out.println("Непарні числа не вводилися.");
         }
+
+        // ===== [4] Підрахунок крапок у рядку =====
+        System.out.print("Введіть рядок: ");
+        String input = scan.nextLine();
+        int count = 0;
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) == '.') count++;
+        }
+        System.out.println("Кількість крапок у рядку: " + count);
+
 
         scan.close();
     }
